@@ -1,0 +1,55 @@
+{
+    "ArchiveList": [
+        {
+            "console": "Gameboy",
+            "link": ["https://archive.org/download/nointro.gb"]
+        },
+        {
+            "console": "Gameboy Color",
+            "link": ["https://archive.org/download/nointro.gbc"]
+        },
+        {
+            "console": "Gameboy Advanced",
+            "link": ["https://archive.org/download/nointro.gba"]
+        },
+        {
+            "console": "Nintendo DS",
+            "link": ["https://archive.org/download/no-intro-nintendo-nintendo-ds-decrypted"]
+        },
+        {
+            "console": "DS Download PLay",
+            "link": ["https://archive.org/download/no-intro-nintendo-nintendo-ds-download-play"]
+        },
+        {
+            "console": "Nintendo DSi",
+            "link": ["https://archive.org/download/no-intro-nintendo-nintendo-dsi-decrypted"]
+        },
+        {
+            "console": "DSi-ware",
+            "link": ["https://archive.org/download/no-intro-nintendo-nintendo-dsi-digital"]
+        },
+        {
+            "console": "Nintendo 3DS",
+            "link": ["https://archive.org/download/no-intro-nintendo-nintendo-3ds-encrypted",
+                "https://archive.org/download/no-intro-nintendo-nintendo-3ds-encrypted-part-2"]
+        },
+        {
+            "console": "Nintendo Entertainment System",
+            "link": ["https://archive.org/download/nointro.nes"]
+        },
+        {
+            "console": "Super Nintendo",
+            "link": ["https://archive.org/download/nointro.snes"]
+        },
+        {
+            "console": "Nintendo 64",
+            "link": ["https://archive.org/download/nointro.n64"]
+        },
+        {
+            "console": "Gamecube",
+            "link": ["https://archive.org/download/rvz-gc-usa-redump/RVZ-GC-USA-REDUMP/",
+            "https://archive.org/download/rvz-gc-europe-redump/RVZ-GC-EUROPE-REDUMP/",
+            "https://archive.org/download/rvz-gc-asia-redump/RVZ-GC-ASIA-REDUMP/"]
+        }
+    ]
+}
