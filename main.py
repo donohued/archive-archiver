@@ -20,7 +20,7 @@ def get_user_info():
         name = i["console"]
         consoles.append(name)
         print("{}) {}".format(cnt, name))
-        cnt = cnt+1
+        cnt = cnt + 1
 
     print("Please make a selection above:")
 
@@ -29,6 +29,7 @@ def get_user_info():
     host_sel = int(input())
 
     if host_sel == 0:
+        print("enter url:")
         host_site.append(input())
     else:
         for i in data["ArchiveList"]:
@@ -43,18 +44,16 @@ def get_user_info():
     global usr_path
 
     print("Choose a directory to save the files (Type here to choose cur dir):")
-    print(os.getcwd() + "to:")
-    os.chdir(input())
-    print("new path:" + os.getcwd())
-
-
-
-
+    print(os.getcwd() + " to:")
+    dirstr = input()
+    if dirstr != "":
+        os.chdir(dirstr)
+    print("new path-> " + os.getcwd())
 
 
 # loop through links on page
 def get_links(i):
-    req = Request(i)
+    req = (i)
     html_page = urlopen(req)
     soup = BeautifulSoup(html_page, "lxml")
 
@@ -64,7 +63,7 @@ def get_links(i):
 
     for url in links:
         if url is not None and url.find(usr_str) != -1 and url.find("/") == -1:
-            usr_links.append(i + "/" + url)
+            usr_links.append([i + "/" + url, url])
 
 
 # Calculate file size from url
@@ -78,39 +77,36 @@ def calc_space(url):
 # Get the total count and size of files and display for conformation
 def loop_space():
     space = 0
-    for link_name in usr_links:
-        space += calc_space(link_name)
+    for entry in usr_links:
+        space += calc_space(entry[0])
 
     print("\n{}: {}".format("Total number of files selected ", len(usr_links)))
 
-    if int(space) / KBFACTOR < 1042:
+    if int(space) / KBFACTOR < 1024:
         print("{}: {:.2f} KB".format("Total size of selected files ", int(space) / KBFACTOR))
     elif int(space) / MBFACTOR < 1024:
         print("{}: {:.2f} MB".format("Total size of selected files ", int(space) / MBFACTOR))
     else:
         print("{}: {:.2f} GB".format("Total size of selected files ", int(space) / GBFACTOR))
-    print("Do you want you continue? Y/N")
 
+    print("Do you want you continue? Y/N")
     global continue_dl
     while continue_dl == 0:
         confirm = input()
         if confirm == "y" or confirm == "Y":
             print("Starting download of files.")
-            loop_download()
             continue_dl = 1
         elif confirm == "n" or confirm == "N":
             print("Download cancelled..")
             continue_dl = 2
-        else:
-            print("Sorry, huh?")
 
 
 # loop through the list of links and download each one individually.
 def loop_download():
-    for link_name in usr_links:
-        download(link_name,
-                 link_name.replace("%20", " ").replace("%21", "!").replace("%28", "(").replace("%29", ")").replace(
-                     "%2C", ",").replace("%2D", "-").replace("%5B", "[").replace("%5D", "]"))
+    for entry in usr_links:
+        download(entry[0],
+                 entry[1].replace("%20", " ").replace("%21", "!").replace("%28", "(").replace("%29", ")").replace(
+                     "%2C", ","))
 
     print("===============================================================================")
     print("Downloads Complete")
@@ -118,6 +114,7 @@ def loop_download():
 
 # Download file from url
 def download(url, filename):
+    # print(url)
     # print("Downloading next file: " + filename)
     # r = requests.get(url, allow_redirects=True)
     # open(filename, 'wb').write(r.content)
@@ -158,8 +155,8 @@ get_user_info()
 for src in host_site:
     get_links(src)
 
-
 # calc space of download / confirm you want to proceed
+print("Calculating space")
 loop_space()
 
 # start downloading files or skip and end.
