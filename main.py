@@ -36,19 +36,18 @@ def get_user_info():
             if i["console"] == consoles[int(host_sel) - 1]:
                 for j in i["link"]:
                     host_site.append(j)
-                    print(j)
 
     print("Enter a string to filter results:")
     usr_str = input()
 
     global usr_path
 
-    print("Choose a directory to save the files (Type here to choose cur dir):")
-    print(os.getcwd() + " to:")
+    print("Choose a directory to save the files (press ENTER to skip):")
+    print("Current Directory: {}".format(os.getcwd()))
     dirstr = input()
     if dirstr != "":
         os.chdir(dirstr)
-    print("new path-> " + os.getcwd())
+    print("new path-> {}".format(os.getcwd()))
 
 
 # loop through links on page
@@ -70,18 +69,19 @@ def get_links(i):
 def calc_space(url):
     response = requests.head(url, allow_redirects=True)
     size = response.headers.get("content-length", -1)
-    print(".", end="")
     return int(size)
 
 
 # Get the total count and size of files and display for conformation
 def loop_space():
     space = 0
+    filecnt = 0
     for entry in usr_links:
         space += calc_space(entry[0])
+        filecnt += 1
+        print("\r{} / {}".format(filecnt, len(usr_links)), end="")
 
-    print("\n{}: {}".format("Total number of files selected ", len(usr_links)))
-
+    print("")
     if int(space) / KBFACTOR < 1024:
         print("{}: {:.2f} KB".format("Total size of selected files ", int(space) / KBFACTOR))
     elif int(space) / MBFACTOR < 1024:
@@ -104,11 +104,11 @@ def loop_space():
 # loop through the list of links and download each one individually.
 def loop_download():
     for entry in usr_links:
+        print("\r\r", end="")
         download(entry[0],
-                 entry[1].replace("%20", " ").replace("%21", "!").replace("%28", "(").replace("%29", ")").replace(
-                     "%2C", ","))
+                 entry[1].replace("%20", " ").replace("%21", "!").replace("%24", "$").replace("%27", "'").replace("%28", "(").replace("%29", ")").replace(
+                     "%2C", ",").replace("%2B", "+"))
 
-    print("===============================================================================")
     print("Downloads Complete")
 
 
@@ -118,7 +118,6 @@ def download(url, filename):
     # print("Downloading next file: " + filename)
     # r = requests.get(url, allow_redirects=True)
     # open(filename, 'wb').write(r.content)
-    # print("Complete.")
     with open(filename, "wb") as f:
         print("Downloading %s" % filename)
         response = requests.get(url, stream=True)
@@ -156,8 +155,10 @@ for src in host_site:
     get_links(src)
 
 # calc space of download / confirm you want to proceed
-print("Calculating space")
+print("\nTotal number of files selected:\n{}".format(len(usr_links)))
+print("Calculating space of files...")
 loop_space()
+print("")
 
 # start downloading files or skip and end.
 if continue_dl == 1:
