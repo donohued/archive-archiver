@@ -1,0 +1,59 @@
+{
+    "ArchiveList": [
+        {
+            "Gameboy": [
+                "https://archive.org/download/nointro.gb"
+            ],
+            "Gameboy Color": [
+                "https://archive.org/download/nointro.gbc"
+            ],
+            "Gameboy Advanced": [
+                "https://archive.org/download/nointro.gba"
+            ],
+            "Nintendo DS": [
+                "https://archive.org/download/no-intro-nintendo-nintendo-ds-decrypted"
+            ],
+            "DS Download PLay": [
+                "https://archive.org/download/no-intro-nintendo-nintendo-ds-download-play"
+            ],
+            "Nintendo DSi": [
+                "https://archive.org/download/no-intro-nintendo-nintendo-dsi-decrypted"
+            ],
+            "DSi-ware": [
+                "https://archive.org/download/no-intro-nintendo-nintendo-dsi-digital"
+            ],
+            "Nintendo 3DS": [
+                "https://archive.org/download/no-intro-nintendo-nintendo-3ds-encrypted",
+                "https://archive.org/download/no-intro-nintendo-nintendo-3ds-encrypted-part-2"
+            ],
+            "Nintendo Entertainment System": [
+                "https://archive.org/download/nointro.nes"
+            ],
+            "Super Nintendo": [
+                "https://archive.org/download/nointro.snes"
+            ],
+            "Nintendo 64": [
+                "https://archive.org/download/nointro.n64"
+            ],
+            "Gamecube": [
+                "https://archive.org/download/rvz-gc-usa-redump/RVZ-GC-USA-REDUMP/",
+                "https://archive.org/download/rvz-gc-europe-redump/RVZ-GC-EUROPE-REDUMP/",
+                "https://archive.org/download/rvz-gc-asia-redump/RVZ-GC-ASIA-REDUMP/"
+            ]
+        }
+    ],
+    "UserSettings": [
+        {
+           "saveDir": ""
+        },
+        {
+           "startIndex": ""
+        },
+        {
+            "searchConsoles": [""]
+        },
+        {
+           "searchParams": [""]
+        }
+    ]
+}
